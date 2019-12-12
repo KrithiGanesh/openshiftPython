@@ -11,11 +11,11 @@ def home():
 class Greeting():
     def __init__(self):
         username = "krithiga"
-        print "Content-type: text/html"
+        print("Content-type: text/html")
         welcome_string = """<html><body>
                           Hi there, {}!
                           </body></html>""".format(username)
-       print welcome_string
+       print(welcome_string)
 
 @application.route("/")
 def hello_world():
