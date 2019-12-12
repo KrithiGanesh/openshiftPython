@@ -4,8 +4,6 @@ import os
 application = Flask(__name__)
 
 @application.route("/")
-application.debug = True
-
 def hello_world():
 
   storage = Storage()
