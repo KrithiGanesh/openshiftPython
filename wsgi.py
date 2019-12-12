@@ -2,6 +2,19 @@ from flask import Flask
 import MySQLdb
 import os
 application = Flask(__name__)
+@application.route("/home")
+def home():
+  greeting = Greeting()
+  greeting.post()
+  
+ class Greeting():
+    def post(self):
+        username = "krithiga"
+        welcome_string = """<html><body>
+                          Hi there, {}!
+                          </body></html>""".format(username)
+        self.response.headers["Content-Type"] = "text/html"
+        self.response.write(welcome_string)
 
 @application.route("/")
 def hello_world():
