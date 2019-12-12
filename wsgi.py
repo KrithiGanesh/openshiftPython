@@ -12,7 +12,7 @@ def hello_world():
 
   score = storage.score()
 
-  return "Hello pythonapp 123, %d!" % score
+  return score
 
 
 
