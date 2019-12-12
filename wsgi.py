@@ -22,15 +22,15 @@ class Storage():
 
     self.db = MySQLdb.connect(
 
-      user   = os.getenv('xxuser'),
+      user   = "xxuser"
 
-      passwd = os.getenv('welcome1'),
+      passwd = "welcome1"
 
-      db     = os.getenv('sampledb'),
+      db     ="sampledb"
 
-      host   = os.getenv('mysql-gamification.inmbzp8022.in.dst.ibm.com'),
+      host   = "mysql-gamification.inmbzp8022.in.dst.ibm.com"
 
-      port   = int(os.getenv('3306'))
+      port   = int('3306')
 
     )
 
