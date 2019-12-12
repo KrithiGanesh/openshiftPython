@@ -5,8 +5,7 @@ application = Flask(__name__)
 
 @application.route("/")
 application.debug = True
-def hello():
-    return "Hello World!"
+
 def hello_world():
 
   storage = Storage()
@@ -15,7 +14,7 @@ def hello_world():
 
   score = storage.score()
 
-  return "Hello Beijing 123, %d!" % score
+  return "Hello pythonapp 123, %d!" % score
 
 
 
