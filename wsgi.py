@@ -6,16 +6,17 @@ application = Flask(__name__)
 @application.route("/home")
 def home():
   greeting = Greeting()
- 
+  msg=greeting.post()
+  print(msg)
   
 class Greeting():
-    def __init__(self):
+    def post(self):
         username = "krithiga"
         print("Content-type: text/html")
         welcome_string = """<html><body>
                           Hi there, {}!
                           </body></html>""".format(username)
-        print(welcome_string)
+       return welcome_string
 
 @application.route("/")
 def hello_world():
