@@ -1,6 +1,7 @@
 from flask import Flask
 import MySQLdb
 import os
+import cgi
 application = Flask(__name__)
 @application.route("/home")
 def home():
@@ -10,11 +11,11 @@ def home():
 class Greeting():
     def __init__(self):
         username = "krithiga"
+        print "Content-type: text/html"
         welcome_string = """<html><body>
                           Hi there, {}!
                           </body></html>""".format(username)
-        self.response.headers["Content-Type"] = "text/html"
-        self.response.write(welcome_string)
+       print welcome_string
 
 @application.route("/")
 def hello_world():
