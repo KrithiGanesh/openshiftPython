@@ -6,8 +6,8 @@ application = Flask(__name__)
 @application.route("/home")
 def home():
   greeting = Greeting()
-  msg=greeting.post()
-  print(msg)
+  greet=greeting.post()
+  return greet
   
 class Greeting():
     def post(self):
