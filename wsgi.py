@@ -7,7 +7,7 @@ def home():
   greeting = Greeting()
   greeting.post()
   
- class Greeting():
+class Greeting():
     def post(self):
         username = "krithiga"
         welcome_string = """<html><body>
