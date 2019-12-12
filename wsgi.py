@@ -38,7 +38,7 @@ class Storage():
 
     cur = self.db.cursor()
 
-    cur.execute("CREATE TABLE IF NOT EXISTS scores(score INT)")
+   # cur.execute("CREATE TABLE IF NOT EXISTS scores(score INT)")
 
 
 
@@ -54,7 +54,7 @@ class Storage():
 
     cur = self.db.cursor()
 
-    cur.execute("SELECT * FROM scores")
+    cur.execute("SELECT * FROM XXIBM_PRODUCT_CATALOG")
 
     row = cur.fetchone()
 
