@@ -5,10 +5,10 @@ application = Flask(__name__)
 @application.route("/home")
 def home():
   greeting = Greeting()
-  greeting.post()
+ 
   
 class Greeting():
-    def post(self):
+    def __init__(self):
         username = "krithiga"
         welcome_string = """<html><body>
                           Hi there, {}!
