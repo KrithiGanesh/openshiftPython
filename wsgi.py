@@ -15,7 +15,7 @@ class Greeting():
         welcome_string = """<html><body>
                           Hi there, {}!
                           </body></html>""".format(username)
-       print(welcome_string)
+        print(welcome_string)
 
 @application.route("/")
 def hello_world():
