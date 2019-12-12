@@ -28,7 +28,7 @@ class Storage():
 
       db     ="sampledb",
 
-      host   = "mysql-gamification.inmbzp8022.in.dst.ibm.com",
+      host   = "custom-mysql.gamification.svc.cluster.local",
 
       port   = int('3306')
 
