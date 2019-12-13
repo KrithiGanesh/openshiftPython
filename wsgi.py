@@ -82,7 +82,7 @@ class Storage():
     img=fetchBoto.fetchImg()
     return img
   
-  Class BotoImages():
+  class BotoImages():
     def fetchImg():
       cos_credentials={
               "apikey": "_bAzHuCAN1yPz4Rcg5CZY1Tbp0UOpshuMhpoNkIvJAa3",
