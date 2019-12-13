@@ -71,7 +71,7 @@ class Storage():
 
     row = cur.fetchone()
 
-    return row[0]
+    return row[0]+":"+row[1]+":"+row[2]+":"+row[2]+":"+row[3]+":"+row[4]
 
 if __name__ == "__main__":
     application.run()
