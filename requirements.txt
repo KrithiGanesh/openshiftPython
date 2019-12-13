@@ -1,3 +1,4 @@
 gunicorn
 Flask
 mysqlclient
+-e git://github.com/boto/jmespath.git@develop#egg=jmespath
