@@ -13,32 +13,7 @@ class Greeting():
     def post(self):
         username = "krithiga"
         print("Content-type: text/html")
-        welcome_string = """<html>
-                      <head>
-                      <title>Page Title</title>
-                      <style>
-                      .heading{
-                      color:white;
-                      background-color:#000066;
-                      }
-                      .main{
-                      color:white;
-                      background-color:red;
-                      }
-                      </style>
-                      </head>
-                      <body>
-                      <div class="heading">
-                      <h1>Welcome to GenZ Inc <img src="pic_trulli.jpg" alt="Trulli" width="38"height="38" style="float:right;"></h1>
-
-                      </div>
-                      <div class="main">
-                      <p><b>IKEA_D-O-D : WEBSITE UNDER CONSTRUCTION</b></p>
-
-                      </div>
-
-                      </body>
-                      </html>""".format(username)
+        welcome_string = """<html><head><title>GenZ Inc.</title></head><body><div class="heading"><h1 style="color:white;background-color:#000066">Welcome to GenZ Inc <img src="pic_trulli.jpg" alt="Trulli" width="38"height="38" style="float:right;"></h1></div> <div class="main"><p style="color:white;background-color:black"><b>IKEA_D-O-D : WEBSITE UNDER CONSTRUCTION</b></p></div> </body> </html>""".format(username)
         return welcome_string
 
 @application.route("/")
