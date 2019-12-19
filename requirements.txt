@@ -1,4 +1,5 @@
 gunicorn
 Flask
 mysqlclient
+pip install -U ibm-cos-sdk
 boto3==0.0.1
