@@ -204,7 +204,7 @@ def girls_page():
 
 @application.route('/search', methods=['POST', 'GET'])
 def search():
-    if 'mic' in request.args:
+    if 'q' in request.args:
        print ("in speech to text",)
  
        authenticator = IAMAuthenticator('N0-hVj524g0o23sRDYesTJN4DPbZyBffx5ziKMOpOecL')
