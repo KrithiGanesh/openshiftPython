@@ -116,10 +116,11 @@ recordMic.onclick = function() {
       console.log('recorder started');
       $('#q').val('I am listening ...');
     } catch (ex) {
-      // console.log("Recognizer error .....");
+       console.log("Recognizer error .....");
     }
   } else {
     stopRecording();
+    console.log('recorder stopped');
     $('#q').val('');
   }
 };
@@ -148,7 +149,8 @@ function stopRecording(button) {
   recorder &&
     recorder.exportWAV(function(blob) {
       console.log(blob);
-      const url = '/api/speech-to-text';
+      const url = '/search';
+      console.log('search called.');
       const request = new XMLHttpRequest();
       request.open('POST', url, true);
       // request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
