@@ -206,12 +206,12 @@ def girls_page():
 def search():
     if 'mic' in request.args:
        print ("in speech to text",)
-   # initialize speech to text service
-        authenticator = IAMAuthenticator('N0-hVj524g0o23sRDYesTJN4DPbZyBffx5ziKMOpOecL')
+ 
+       authenticator = IAMAuthenticator('N0-hVj524g0o23sRDYesTJN4DPbZyBffx5ziKMOpOecL')
 
-        speech_to_text = SpeechToTextV1(authenticator=authenticator)
+       speech_to_text = SpeechToTextV1(authenticator=authenticator)
 
-          response = sttService.recognize(
+       response = sttService.recognize(
 
                     audio=request.get_data(cache=False),
 
@@ -225,7 +225,7 @@ def search():
 
           # Ask user to repeat if STT can't transcribe the speech
 
-          if len(response['results']) < 1:
+        if len(response['results']) < 1:
 
             return Response(mimetype='plain/text',response="Sorry, didn't get that. please try again!")
 
