@@ -207,7 +207,7 @@ def search():
     if 'q' in request.args:
        print ("in speech to text",)
  
-       authenticator = IAMAuthenticator('N0-hVj524g0o23sRDYesTJN4DPbZyBffx5ziKMOpOecL')
+       authenticator = IAMAuthenticator('cTnzuGCo56IOp7fsF63K9Hz1uDRXs6qoQ78y1Pe1QOE1')
 
        speech_to_text = SpeechToTextV1(authenticator=authenticator)
 
