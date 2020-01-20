@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PRODUCT DETAIL</title>
+  <!--<link rel="stylesheet" href="{{ url_for('static',     filename='css/home.css') }}">
+  </link> -->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css"> 
+  <style>
+    body {
+     margin: 0;
+     font-family: Arial, Helvetica, sans-serif;
+         }
+     .prdt1-container {
+  
+  position: absolute;
+  left: 10%;
+  margin-left: -3px;
+  top: 30%;
+}
+     
+.column {
+  float: left;
+  width: 33%;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+  </style>
+</head>
+
+<body >
+  <div class="panel">
+  <h1 style="color:black;text-align:center;font-family:French script MT;padding-top: 45px;
+  padding-right: 100px;background-image: url('static/index.jpg');font-size:300%">KOOL-GENZ</h1> 
+ </div>
+ <div class="prdt1-container">
+        
+      <div class="row">
+            {% for product1 in prdtdetail %}
+                 <div class="column">
+                    <img class="card-img""  src="static/{{product1.ITEM_NUMBER}}.jpg" alt="" border="3" style="width:100%;hspace="40"">
+                 </div>
+                 <div class="column" >          
+                      <h2>Product Detail</h2>
+                      <h3 class="card-title">{{ product1.DESCRIPTION}}</h3>
+                      <p >{{ product1.LONG_DESCRIPTION}}</p>
+                      <p >SIZE    :{{ product1.SKU_ATTRIBUTE_VALUE1}}</p>
+                      <p >COLOUR  : {{ product1.SKU_ATTRIBUTE_VALUE2}}</p>
+                      <p >PRICE   :${{ product1.LIST_PRICE}}</p> 
+                      {% if product1.DISCOUNT == "" or product1.DISCOUNT == "None" %}                      
+                        <p >DISCOUNT:0%</p> 
+                      {% else  %}
+                        <p >DISCOUNT:{{ product1.DISCOUNT}}%</p>                                                           
+                      {% endif %}
+                      <p >AVAILABLE : Yes</p>                     
+                        
+                 </div>  
+             {% endfor %}
+        </div>
+ </div>
+</body>
+</html>
