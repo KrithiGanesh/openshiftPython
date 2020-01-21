@@ -23,9 +23,15 @@ application.config['MYSQL_PASSWORD'] = "welcome1"
 application.config['MYSQL_DB']    = "sampledb"
 application.config['MYSQL_PORT']  = int('3306')
 application.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+default_name = 'insurance-voice-bot'
+
+default_json = 'data/skill-insurance-voice-bot.json'
+
+description = "Assistant workspace created by watson-voice-bot."
 
 # Initialize the app for use with this MySQL class
 mysql.init_app(application)
+
 
 
 @application.route("/")
@@ -395,6 +401,96 @@ def search():
             return render_template('search.html', product_srch=productsrch)  
 
 port = os.environ.get("PORT") or os.environ.get("VCAP_APP_PORT") or 5000    
+def init_skill(assistant_client):
+   workspaces = assistant_client.list_workspaces().get_result()[
+
+        'workspaces']
+
+
+
+    env_workspace_id = os.environ.get('WORKSPACE_ID')
+
+    if env_workspace_id:
+
+        # Optionally, we have an env var to give us a WORKSPACE_ID.
+
+        # If one was set in the env, require that it can be found.
+
+        LOG.info("Using WORKSPACE_ID=%s" % env_workspace_id)
+
+        for workspace in workspaces:
+
+            if workspace['workspace_id'] == env_workspace_id:
+
+                ret = env_workspace_id
+
+                break
+
+        else:
+
+            raise Exception("WORKSPACE_ID=%s is specified in a runtime "
+
+                            "environment variable, but that workspace "
+
+                            "does not exist." % env_workspace_id)
+
+    else:
+
+        # Find it by name. We may have already created it.
+
+        name = os.environ.get('WORKSPACE_NAME', default_name)
+
+        for workspace in workspaces:
+
+            if workspace['name'] == name:
+
+                ret = workspace['workspace_id']
+
+                LOG.info("Found WORKSPACE_ID=%(id)s using lookup by "
+
+                         "name=%(name)s" % {'id': ret, 'name': name})
+
+                break
+
+        else:
+
+            # Not found, so create it.
+
+            LOG.info("Creating workspace from " + default_json)
+
+
+
+            with open(default_json) as workspace_file:
+
+                workspace = json.load(workspace_file)
+
+
+
+            created = assistant_client.create_workspace(
+
+                name=name,
+
+                description=description,
+
+                language=workspace['language'],
+
+                metadata=workspace['metadata'],
+
+                intents=workspace['intents'],
+
+                entities=workspace['entities'],
+
+                dialog_nodes=workspace['dialog_nodes'],
+
+                counterexamples=workspace['counterexamples']).get_result()
+
+            ret = created['workspace_id']
+
+            LOG.info("Created WORKSPACE_ID=%(id)s with "
+
+                     "name=%(name)s" % {'id': ret, 'name': name})
+
+    return ret
 if __name__ == "__main__":
      authenticator = (get_authenticator_from_environment('assistant') or
                      get_authenticator_from_environment('conversation'))
