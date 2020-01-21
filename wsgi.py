@@ -405,12 +405,9 @@ def init_skill(assistant_client):
    workspaces = assistant_client.list_workspaces().get_result()[
 
         'workspaces']
+   env_workspace_id = os.environ.get('WORKSPACE_ID')
 
-
-
-    env_workspace_id = os.environ.get('WORKSPACE_ID')
-
-    if env_workspace_id:
+   if env_workspace_id:
 
         # Optionally, we have an env var to give us a WORKSPACE_ID.
 
@@ -426,7 +423,7 @@ def init_skill(assistant_client):
 
                 break
 
-        else:
+            else:
 
             raise Exception("WORKSPACE_ID=%s is specified in a runtime "
 
@@ -434,23 +431,23 @@ def init_skill(assistant_client):
 
                             "does not exist." % env_workspace_id)
 
-    else:
+           else:
 
         # Find it by name. We may have already created it.
 
-        name = os.environ.get('WORKSPACE_NAME', default_name)
+            name = os.environ.get('WORKSPACE_NAME', default_name)
 
-        for workspace in workspaces:
+            for workspace in workspaces:
 
-            if workspace['name'] == name:
+                if workspace['name'] == name:
 
-                ret = workspace['workspace_id']
+                    ret = workspace['workspace_id']
 
-                LOG.info("Found WORKSPACE_ID=%(id)s using lookup by "
+                    LOG.info("Found WORKSPACE_ID=%(id)s using lookup by "
 
-                         "name=%(name)s" % {'id': ret, 'name': name})
+                             "name=%(name)s" % {'id': ret, 'name': name})
 
-                break
+                    break
 
         else:
 
