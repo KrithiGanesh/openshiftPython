@@ -428,12 +428,7 @@ def search():
 
        print ("in speech to text",)
 
- 
-
-       authenticator = IAMAuthenticator('AMyhXj5hTvqHyqNe4vt6e6uZiGCWFtR-5TqnGy3tpetJ')
-
-
-
+        
        speech_to_text = SpeechToTextV1()
 
 
