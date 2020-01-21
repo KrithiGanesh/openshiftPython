@@ -5,6 +5,7 @@ from functools import wraps
 from flask import jsonify
 from flask_socketio import SocketIO
 from flask_cors import CORS
+from ibm_watson import AssistantV1
 from ibm_watson import SpeechToTextV1
 from ibm_cloud_sdk_core import get_authenticator_from_environment
 import os
@@ -207,21 +208,21 @@ def search():
     if 'q' in request.args:
        print ("in speech to text",)
  
-       authenticator = IAMAuthenticator('cTnzuGCo56IOp7fsF63K9Hz1uDRXs6qoQ78y1Pe1QOE1')
+       authenticator = IAMAuthenticator('AMyhXj5hTvqHyqNe4vt6e6uZiGCWFtR-5TqnGy3tpetJ')
 
-       speech_to_text = SpeechToTextV1(authenticator=authenticator)
+       speech_to_text = SpeechToTextV1()
 
        response = sttService.recognize(
 
-                    audio=request.get_data(cache=False),
+            audio=request.get_data(cache=False),
 
-                    content_type='audio/wav',
+            content_type='audio/wav',
 
-                    timestamps=True,
+            timestamps=True,
 
-                    word_confidence=True,
+            word_confidence=True,
 
-                    smart_formatting=True).get_result()
+            smart_formatting=True).get_result()
 
           # Ask user to repeat if STT can't transcribe the speech
 
@@ -395,4 +396,8 @@ def search():
 
 port = os.environ.get("PORT") or os.environ.get("VCAP_APP_PORT") or 5000    
 if __name__ == "__main__":
+     authenticator = (get_authenticator_from_environment('assistant') or
+                     get_authenticator_from_environment('conversation'))
+    assistant = AssistantV1(version="2019-11-06", authenticator=authenticator)
+    workspace_id = assistant_setup.init_skill(assistant)
     socketio.run(application)
