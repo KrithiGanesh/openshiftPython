@@ -398,6 +398,6 @@ port = os.environ.get("PORT") or os.environ.get("VCAP_APP_PORT") or 5000
 if __name__ == "__main__":
      authenticator = (get_authenticator_from_environment('assistant') or
                      get_authenticator_from_environment('conversation'))
-    assistant = AssistantV1(version="2019-11-06", authenticator=authenticator)
-    workspace_id = assistant_setup.init_skill(assistant)
-    socketio.run(application)
+     assistant = AssistantV1(version="2019-11-06", authenticator=authenticator)
+     workspace_id = assistant_setup.init_skill(assistant)
+     socketio.run(application)
