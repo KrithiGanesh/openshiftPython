@@ -19,7 +19,7 @@ from ibm_watson import SpeechToTextV1
 from ibm_cloud_sdk_core import get_authenticator_from_environment
 
 import os
-import speech_recognition as sr
+
 import json
 
 
@@ -429,17 +429,10 @@ def search():
     if 'q' in request.args:
 
       print ("in speech to text",)
-      r = sr.Recognizer()
-      speech = sr.Microphone()
       speech_to_text = SpeechToTextV1( iam_apikey = "AMyhXj5hTvqHyqNe4vt6e6uZiGCWFtR-5TqnGy3tpetJ",
                url = "https://api.us-south.speech-to-text.watson.cloud.ibm.com/instances/e854020d-4a48-40df-82d1-6981762b205e")
-        
-      with speech as source:
-        print("say something!!…")
-        audio_file = r.adjust_for_ambient_noise(source)
-        audio_file = r.listen(source)
-        speech_recognition_results = speech_to_text.recognize(audio=audio_file.get_wav_data(), content_type='audio/wav').get_result()
-        print(json.dumps(speech_recognition_results, indent=2))        
+      speech_recognition_results = speech_to_text.recognize(audio=audio_file.get_wav_data(), content_type='audio/wav').get_result()
+      print(json.dumps(speech_recognition_results, indent=2))        
 
     if 'q' in request.args:
 
